@@ -188,6 +188,19 @@
          )
        )
      )
+     
+(define run-block-exp
+  (lambda (parsed-list-exp env)
+    (cond
+      ((null? parsed-list-exp) '())
+      ((equal? (caar parsed-list-exp) 'assign-exp)
+       (run-block-exp
+        (cdr parsed-list-exp)
+        (run-assign-exp (cadr parsed-list-exp) (caddr parsed-list-exp) env)))
+      (else (cons
+             (run-neo-parsed-code (car parsed-list-exp) env)
+             (run-block-exp (cdr parsed-list-exp) env)
+             )
          
 
 (define cascade-update-env
