@@ -173,6 +173,22 @@
   (lambda (parsed-code env)
     (display (string-append "**screen** " (number-string
                                            (run-neo-parsed-code parsed-code env))))
+                                           
+(define run-assign-exp
+  (lambda (parsed-code varname value env)
+    (cond
+      ((null? env) #false)
+      ((equal? (caar env) 'global)
+       (cons (list (list varname value)) env)); (((varname value)) (global (a 1) ...))
+      (let*
+          ((new-local-scope (cons (list varname value) (car env)))
+            (under-env (cdr env)))
+         (cons new-local-scope under-env))
+         )
+         )
+       )
+     )
+         
 
 (define cascade-update-env
   (lambda (parsed-scope env)
