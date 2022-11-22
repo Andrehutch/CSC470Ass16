@@ -7,7 +7,7 @@
 (define env ((global (a 1) (b 2) (c 5))))
 (block (print a) (assign x 8) (assign y (math * x 2)) (print y) (assign z (math + b y)) (print z))
 
-(define sample-code '(block (assign x 8) (print x)) ; -> **screen** 1
+(define sample-code '(block (assign x 8) (print x)) ; -> **screen** 1  **screen** 16  **screen** 18
 (displayln (neo-parser sample-code))
 (define parsed-neo-code (neo-parser sample-code))
 (run-neo-parsed-code parsed-neo-code env)
